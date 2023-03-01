@@ -39,12 +39,16 @@ def getKeyboardInput():
 while True:
     vals = getKeyboardInput()
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-    sleep(0.005)
+    sleep(0.001)
     img = me.get_frame_read().frame
     img = cv2.resize(img, (1440, 960))
     cv2.imshow("Image", img)
     cv2.waitKey(1)
-
-
- 
-
+    if keyboard.is_pressed('h'):
+        me.flip_right()
+    elif keyboard.is_pressed('g'):
+        me.flip_left()
+    if keyboard.is_pressed('b'):
+        me.flip_back()
+    elif keyboard.is_pressed('y'):
+        me.flip_forward()
